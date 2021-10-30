@@ -10,11 +10,11 @@ import (
 	"strings"
 )
 
-var baseDir = flag.String("database_dir", "files/databases/", "SQL files directory")
+var baseDir = flag.String("database_dir", "files/database/", "SQL files directory")
 var host = flag.String("h", "127.0.0.1", "Database host")
 var user = flag.String("u", "root", "Database user")
 var pass = flag.String("p", "", "Database password")
-var dbName = flag.String("db", "notifier", "Database name")
+var dbName = flag.String("db", "toggl", "Database name")
 
 func main() {
 	os.Exit(Main())
@@ -24,7 +24,7 @@ func Main() int {
 
 	files, err := ioutil.ReadDir(*baseDir)
 	if err != nil {
-		return 1
+		log.Fatal(err)
 	}
 
 	sqlPrefix := fmt.Sprintf("mysql -h %s -u %s", *host, *user)
@@ -42,10 +42,10 @@ func Main() int {
 			continue
 		}
 		filePath := *baseDir + fileName
-		println(" > Executing file :", fileName, " - ", sqlPrefix+" "+*dbName+" < "+filePath)
+		log.Println(" > Executing file :", fileName, " - ", sqlPrefix+" "+*dbName+" < "+filePath)
 		_, err := exec.Command("sh", "-c", sqlPrefix+" "+*dbName+" < "+filePath).Output()
 		if err != nil {
-			println(fileName, " : ", err.Error())
+			log.Println(fileName, " : ", err.Error())
 		}
 	}
 	return 0
