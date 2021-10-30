@@ -3,13 +3,14 @@ package main
 import (
 	"net/http"
 
+	_ "github.com/go-sql-driver/mysql"
 	"github.com/labstack/echo/v4"
 	"github.com/labstack/echo/v4/middleware"
 	"github.com/radhianamri/toggl-cardgame/lib/config"
-	"github.com/radhianamri/toggl-cardgame/lib/database"
+	db "github.com/radhianamri/toggl-cardgame/lib/database"
 	"github.com/radhianamri/toggl-cardgame/lib/log"
 	"github.com/radhianamri/toggl-cardgame/lib/validator"
-	_ "github.com/swaggo/echo-swagger/example/docs"
+	"github.com/radhianamri/toggl-cardgame/services/decks"
 )
 
 func init() {
@@ -19,10 +20,9 @@ func init() {
 
 func main() {
 	cfg := config.Init()
-	_ = database.Init(cfg.DB)
+	db.Init(cfg.DB)
 
 	e := echo.New()
-
 	e.Use(
 		middleware.Recover(),
 		middleware.LoggerWithConfig(middleware.LoggerConfig{
@@ -38,6 +38,8 @@ func main() {
 		WriteTimeout: cfg.Rest.WriteTimeout,
 		Handler:      e,
 	}
+	v1 := e.Group("/v1")
+	decks.RegisterRoutes(v1)
 
 	log.Info("Server running...")
 	server.ListenAndServe()

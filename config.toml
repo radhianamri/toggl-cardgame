@@ -3,7 +3,7 @@ env="dev"
 timezone="Asia/Jakarta"
 
 [Database]
-dsn="toggle_user:1B6ED928C37FB88C89299B0E799025D0@tcp(127.0.0.1:3306)/?charset=utf8mb4&parseTime=True&loc=Local"
+dsn="toggle_user:1B6ED928C37FB88C89299B0E799025D0@tcp(127.0.0.1:3306)/toggl?charset=utf8mb4&parseTime=True&loc=Local"
 max_idle_time_in_min=10
 max_idle_conn=10
 max_open_conn=100

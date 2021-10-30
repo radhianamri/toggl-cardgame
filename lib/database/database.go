@@ -1,4 +1,4 @@
-package database
+package db
 
 import (
 	"time"
@@ -15,13 +15,18 @@ type Config struct {
 	MaxOpenConn      int           `toml:"max_open_conn"`
 }
 
-func Init(cfg Config) *gorm.DB {
+var dbConn *gorm.DB
+
+func Init(cfg Config) {
 	db, err := gorm.Open(mysql.Open(cfg.Dsn), &gorm.Config{
 		PrepareStmt: true,
 	})
 	if err != nil {
 		log.Fatal(err)
 	}
+	db.Set("gorm:auto_preload", true)
+	db.Callback().Update().Remove("gorm:update_time_stamp")
+
 	sqlDB, err := db.DB()
 	if err != nil {
 		log.Fatal(err)
@@ -35,5 +40,13 @@ func Init(cfg Config) *gorm.DB {
 	}
 
 	log.Info("MySQL succesfuly initialized")
-	return db
+	dbConn = db
+}
+
+func GetConn() *gorm.DB {
+	return dbConn
+}
+
+func SetConn() *gorm.DB {
+	return dbConn
 }

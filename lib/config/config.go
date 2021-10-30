@@ -6,15 +6,15 @@ import (
 	"time"
 
 	toml "github.com/pelletier/go-toml"
-	"github.com/radhianamri/toggl-cardgame/lib/database"
+	db "github.com/radhianamri/toggl-cardgame/lib/database"
 	"github.com/radhianamri/toggl-cardgame/lib/log"
 )
 
 type Config struct {
-	Main       Main            `toml:"Main"`
-	Middleware Middleware      `toml:"Middleware"`
-	DB         database.Config `toml:"Database"`
-	Rest       Rest            `toml:"Rest"`
+	Main       Main       `toml:"Main"`
+	Middleware Middleware `toml:"Middleware"`
+	DB         db.Config  `toml:"Database"`
+	Rest       Rest       `toml:"Rest"`
 }
 
 type Main struct {
