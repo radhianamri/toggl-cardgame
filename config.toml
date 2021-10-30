@@ -1,0 +1,19 @@
+[Main]
+env="dev"
+timezone="Asia/Jakarta"
+
+[Database]
+dsn="toggle_user:1B6ED928C37FB88C89299B0E799025D0@tcp(127.0.0.1:3306)/?charset=utf8mb4&parseTime=True&loc=Local"
+max_idle_time_in_min=10
+max_idle_conn=10
+max_open_conn=100
+
+[Middleware]
+log_format="${time_custom} ${latency_human} ${method} ${uri} code=${status} ${error}\n"
+log_time_format="2006-01-02 15:04:05.000"
+gzip_level=4
+
+[Rest]
+port=":8000"
+read_timeout="30s"
+write_timeout="30s"
