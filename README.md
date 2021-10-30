@@ -22,7 +22,7 @@ Inside the project there is a Makefile file which will do the following:
 
 Inside the root directory, run `make` to build the code based on the Makefile configuration
 
-You may face some issue when initializing the database due to authorization access to the database using root user. For such case, you may modify inside `cmd/migration/main.go` and change the credentials.
+You may face some issue when initializing the database due to authorization access to the database using root user. For such case, you may modify inside `cmd/migration/main.go` and change the credentials. Then re-run again.
 
 After build is successful, you can run the binary using `./cmd/main` command
 
