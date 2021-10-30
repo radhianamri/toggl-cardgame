@@ -1,7 +1,6 @@
 package decks
 
 import (
-	"encoding/json"
 	"net/http"
 	"net/http/httptest"
 	"net/url"
@@ -10,6 +9,7 @@ import (
 	"bou.ke/monkey"
 	"github.com/google/uuid"
 	"github.com/labstack/echo/v4"
+	"github.com/radhianamri/toggl-cardgame/lib/json"
 	"github.com/radhianamri/toggl-cardgame/models/entities"
 	"github.com/radhianamri/toggl-cardgame/models/views"
 	repo "github.com/radhianamri/toggl-cardgame/repository"
