@@ -16,7 +16,7 @@ Inside the root directory, run `make` to build the code based on the Makefile co
 
 You may face some issue when initializing the database due to authorization access to the database using root user. For such case, you may modify inside `cmd/migration/main.go` and change the credentials.
 
-After build is successful, you can run the binary using `./cmd/main` command
+After build is successful, you can run the binary using `./bin/main` command
 
 Once running, you can validate by opening browser to url http://localhost:8000/
 
