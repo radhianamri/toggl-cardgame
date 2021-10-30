@@ -6,7 +6,15 @@ Project made for coding test from Toggl for create card deck APIs. List of APIs 
 * Open Deck - GET /v1/decks/:deck_id
 * Draw Cards - GET /v1/decks/:deck_id/draw?count=
 
+## Requirements
+* Go 1.17
+* Mysql server*
+
+*Author was using Mysql 8.0.26 during the development of the project 
+
+
 ## Building Code
+
 Inside the project there is a Makefile file which will do the following:
 1. Initialize Database Objects
 2. Run Unit Tests
@@ -16,7 +24,7 @@ Inside the root directory, run `make` to build the code based on the Makefile co
 
 You may face some issue when initializing the database due to authorization access to the database using root user. For such case, you may modify inside `cmd/migration/main.go` and change the credentials.
 
-After build is successful, you can run the binary using `./bin/main` command
+After build is successful, you can run the binary using `./cmd/main` command
 
 Once running, you can validate by opening browser to url http://localhost:8000/
 
